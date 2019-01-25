@@ -1,7 +1,12 @@
 defmodule Practice.Factor do
 
   def factor(x) do
-    factor_helper(x, 2, []) 
+    cond do
+      (x == 1) ->
+        [1]
+      true ->
+        factor_helper(x, 2, []) 
+    end
   end
 
   def factor_helper(x, factor, factors) do 
