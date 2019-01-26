@@ -25,6 +25,9 @@ defmodule Practice do
   # TODO: Add a palindrome? function.
 
   def palindrome?(expr) do
-    expr == String.reverse(expr)
+    cond do
+      expr == String.reverse(expr) -> "Yes"
+    true -> "No"
+    end
   end
 end
