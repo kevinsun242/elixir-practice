@@ -45,7 +45,7 @@ defmodule Practice.Calc do
     to_postfix_helper(tl(expr), postfix ++ [{:num, x}], operators)
   end
 
-  def process_expr({:op, x}, expr, postfix, operators) do
+  def process_expr({:op, _}, expr, postfix, operators) do
     to_stack_operator(expr, postfix, operators)  
   end
 
@@ -69,7 +69,9 @@ defmodule Practice.Calc do
   end
 
   def pop_operator(expr, postfix, operators) do 
-    to_postfix_helper(expr, postfix ++ [Enum.take((operators), -1)], Enum.drop(operators, -1))
+    to_postfix_helper(expr, 
+                      postfix ++ [Enum.at(Enum.take((operators), -1), 0)], 
+                      Enum.drop(operators, -1))
   end
 
   # Convert to prefix notation 
@@ -87,41 +89,35 @@ defmodule Practice.Calc do
     end
   end
   
+  def evaluate_helper(x, _, stack) when x == nil do 
+    Enum.at(stack, 0)
+  end
+
   def evaluate_helper({:num, x}, expr, stack) do
     evaluate_helper(Enum.at(expr, -2), Enum.drop(expr, -1), stack ++ [x])
   end 
 
-  def evaluate_helper(operator, expr, stack) do
+  def evaluate_helper({:op, operator}, expr, stack) do
     cond do
       length(stack) == 1 ->
         Enum.at(stack, 0)
-      elem(Enum.at(operator, 0), 1) == "+" ->
+      operator == "+" ->
         evaluate_helper(Enum.at(expr, -2), 
                         Enum.drop(expr, -1),
                         Enum.drop(stack, -2) ++ [Enum.at(stack, -2) + Enum.at(stack, -1)])
-      elem(Enum.at(operator, 0), 1) == "-" ->
+      operator == "-" ->
         evaluate_helper(Enum.at(expr, -2),
                         Enum.drop(expr, -1),
                         Enum.drop(stack, -2) ++ [Enum.at(stack, -2) - Enum.at(stack, -1)])
-      elem(Enum.at(operator, 0), 1) == "*" ->
+      operator == "*" ->
         evaluate_helper(Enum.at(expr, -2),
                         Enum.drop(expr, -1),
                         Enum.drop(stack, -2) ++ [Enum.at(stack, -2) * Enum.at(stack, -1)])
-      elem(Enum.at(operator, 0), 1) == "/" ->
+      operator == "/" ->
         evaluate_helper(Enum.at(expr, -2),
                         Enum.drop(expr, -1),
                         Enum.drop(stack, -2) ++ [Enum.at(stack, -2) / Enum.at(stack, -1)])
                         
     end
   end
-
-
-    # Hint:
-    # expr
-    # |> split
-    # |> tag_tokens  (e.g. [+, 1] => [{:op, "+"}, {:num, 1.0}]
-    # |> convert to postfix
-    # |> reverse to prefix
-    # |> evaluate as a stack calculator using pattern matching
-
 end
