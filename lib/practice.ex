@@ -22,12 +22,7 @@ defmodule Practice do
     Practice.Factor.factor(x)
   end
 
-  # TODO: Add a palindrome? function.
-
   def palindrome?(expr) do
-    cond do
-      expr == String.reverse(expr) -> "Yes"
-    true -> "No"
-    end
+    expr == String.reverse(expr)
   end
 end

@@ -17,8 +17,6 @@ config :practice, PracticeWeb.Endpoint,
   version: Application.spec(:phoenix_distillery, :vsn),
   url: [host: "hw03.ksun.pw", port: 80]
 
-# TODO: Correct the above URL for deployment.
-
 # Do not print debug messages in production
 config :logger, level: :info
 
