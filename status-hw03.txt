@@ -1,0 +1,39 @@
+Please fill in answers to the questions below:
+
+
+1. What's your name?
+Kevin Sun
+
+2. What hostname did you deploy to for Task 2?
+hw03.ksun.pw
+
+3. What's the URL of your git repo for Task 2?
+https://github.com/kevinsun242/elixir-practice
+
+4. How much of the functionality did you complete?
+All of them
+
+5. Did you successfully deploy? If not, what's broken?
+Yes, I used a systemd service to start (file on git)
+
+6. How comfortable do you feel with Elixir now?
+Semi-comfortable (brings back memories of fundies 1 LOL)
+
+7. Which parts of this assignment did you have trouble with, if any?
+I had some trouble with the logic of calc but was able to find
+some help from various sources on how to evaluate it and convert
+between infix, postfix, and prefix, some sources I used:
+
+https://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/
+https://www.geeksforgeeks.org/postfix-prefix-conversion/
+https://www.geeksforgeeks.org/evaluation-prefix-expressions/
+
+And here's a list of tasks for grading comments. Just leave this here:
+ - Task 1
+ - Task 2
+ - Task 3
+ - Task 4
+ - Task 5
+ - Task 6
+ - Task 7
+ - Task 8
